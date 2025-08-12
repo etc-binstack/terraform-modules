@@ -1,0 +1,142 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "5.78.0"
+    }
+  }
+}
+
+provider "aws" {
+  region                   = "us-east-1"
+  shared_credentials_files = ["~/.aws/credentials"]
+  profile                  = "website-dev"
+}
+
+# discovery.tf - Use this to discover your actual AWS resources
+# Run: terraform init && terraform plan to see available resources
+# Get current region and account info
+data "aws_caller_identity" "current" {}
+data "aws_region" "current" {}
+
+# Discover all VPCs in current region
+data "aws_vpcs" "all" {}
+
+data "aws_vpc" "details" {
+  for_each = toset(data.aws_vpcs.all.ids)
+  id       = each.value
+}
+
+# Discover all subnets
+data "aws_subnets" "all" {}
+
+data "aws_subnet" "details" {
+  for_each = toset(data.aws_subnets.all.ids)
+  id       = each.value
+}
+
+# Discover all Internet Gateways
+data "aws_internet_gateways" "all" {}
+
+data "aws_internet_gateway" "details" {
+  for_each = toset(data.aws_internet_gateways.all.ids)
+
+  filter {
+    name   = "internet-gateway-id"
+    values = [each.value]
+  }
+}
+
+# Output discovered resources
+output "current_aws_info" {
+  description = "Current AWS account and region information"
+  value = {
+    account_id = data.aws_caller_identity.current.account_id
+    region     = data.aws_region.current.name
+    user_arn   = data.aws_caller_identity.current.arn
+  }
+}
+
+output "discovered_vpcs" {
+  description = "All VPCs found in current region"
+  value = {
+    for vpc_id, vpc in data.aws_vpc.details : vpc_id => {
+      id         = vpc.id
+      cidr_block = vpc.cidr_block
+      name_tag   = try(vpc.tags["Name"], "No Name Tag")
+      is_default = vpc.default
+      state      = vpc.state
+    }
+  }
+}
+
+output "discovered_subnets_by_vpc" {
+  description = "All subnets organized by VPC"
+  value = {
+    for vpc_id in data.aws_vpcs.all.ids : vpc_id => {
+      vpc_name = try(data.aws_vpc.details[vpc_id].tags["Name"], "No Name Tag")
+      subnets = {
+        for subnet_id, subnet in data.aws_subnet.details : subnet_id => {
+          id                = subnet.id
+          cidr_block        = subnet.cidr_block
+          availability_zone = subnet.availability_zone
+          name_tag          = try(subnet.tags["Name"], "No Name Tag")
+          type              = subnet.map_public_ip_on_launch ? "public" : "private"
+        } if subnet.vpc_id == vpc_id
+      }
+    }
+  }
+}
+
+output "discovered_internet_gateways" {
+  description = "All Internet Gateways found"
+  value = {
+    for igw_id, igw in data.aws_internet_gateway.details : igw_id => {
+      id       = igw.id
+      name_tag = try(igw.tags["Name"], "No Name Tag")
+      vpc_id   = length(igw.attachments) > 0 ? igw.attachments[0].vpc_id : "Not Attached"
+      state    = length(igw.attachments) > 0 ? igw.attachments[0].state : "detached"
+    }
+  }
+}
+
+# Specific check for your provided IDs
+locals {
+  your_vpc_id = "vpc-09cac06688a7c379e"
+  your_subnet_ids = [
+    "subnet-09b2be4372e880054",
+    "subnet-0c34d5e4b72e1ec18",
+    "subnet-06655ef8f5c479a7e",
+    "subnet-029f142c4068f8470",
+    "subnet-077a3405ca4112ad4",
+    "subnet-02d1da3f757578709"
+  ]
+  your_igw_id = "igw-06f70b7d5989259ce"
+}
+
+output "resource_validation" {
+  description = "Validation of your specific resource IDs"
+  value = {
+    vpc_exists          = contains(data.aws_vpcs.all.ids, local.your_vpc_id)
+    vpc_found_in_region = local.your_vpc_id
+
+    subnets_validation = {
+      for subnet_id in local.your_subnet_ids : subnet_id => {
+        exists          = contains(data.aws_subnets.all.ids, subnet_id)
+        found_in_region = subnet_id
+      }
+    }
+
+    igw_exists          = contains(data.aws_internet_gateways.all.ids, local.your_igw_id)
+    igw_found_in_region = local.your_igw_id
+
+    summary = {
+      vpc_valid = contains(data.aws_vpcs.all.ids, local.your_vpc_id)
+      subnets_valid = length([
+        for subnet_id in local.your_subnet_ids : subnet_id
+        if contains(data.aws_subnets.all.ids, subnet_id)
+      ])
+      igw_valid = contains(data.aws_internet_gateways.all.ids, local.your_igw_id)
+    }
+  }
+}
