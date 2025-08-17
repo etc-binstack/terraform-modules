@@ -1,0 +1,9 @@
+output "spa_url" {
+  description = "URL of the SPA hosted on S3"
+  value       = "http://${aws_s3_bucket.spa_bucket.bucket}.s3-website-${var.region}.amazonaws.com"
+}
+
+output "api_url" {
+  description = "URL of the API Gateway endpoint"
+  value       = "${aws_api_gateway_deployment.api_deployment.invoke_url}/test"
+}
