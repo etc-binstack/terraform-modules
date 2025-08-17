@@ -338,7 +338,23 @@ function generatePolicy(principalId, effect, resource) {
 - **MFA Issues**: Confirm SNS role permissions for SMS MFA.
 - **Domain Errors**: Ensure the certificate ARN matches the region and domain.
 
-# main.tf
+
+
+## main.tf
+Below is a comprehensive example of how to use the module, showcasing multi-tenant SaaS support, MFA, user groups, and a custom domain.
+
+Features Demonstrated:
+
+- Multi-tenant SaaS with auto-generated Lambda for tenant_id and company_id.
+- OAuth-enabled app client with attribute permissions.
+- MFA with SMS and software token.
+- Account recovery with email and phone.
+- User groups for tenant-specific roles.
+- SAML identity provider integration.
+- Resource server with custom OAuth scopes.
+- Custom domain for hosted UI.
+- Strong password policy and deletion protection.
+
 ```hcl
 module "cognito_pool" {
   source = "./path/to/module"
@@ -491,3 +507,12 @@ module "cognito_pool" {
   }
 }
 ```
+
+Final Notes
+
+- Validation: The updated files fix the unused random_string, optimize lambda_config creation, add jwt_custom_claims validation, and include the Lambda ARN output, ensuring a robust module.
+- Module Call: The main.tf example demonstrates all major features, making it easy to adapt for different use cases.
+- README: The README is comprehensive, covering setup, multi-tenancy, use cases, inputs, outputs, and troubleshooting, aligned with the module’s functionality as of August 18, 2025.
+- Multi-Tenant Support: The auto-generated Lambda simplifies multi-tenant setups, while allowing external Lambdas for flexibility.
+
+Let me know if you need further refinements, additional examples, or help with testing!
