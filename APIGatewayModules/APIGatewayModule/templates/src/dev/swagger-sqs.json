@@ -1,0 +1,82 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "${env}",
+    "version": "v0",
+    "title": "${api_title}"
+  },
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/v1/case/event": {
+      "post": {
+        "operationId": "handleCaseEvent",
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "parameters": null,
+        "x-amazon-apigateway-integration": {
+          "connectionId": "${vpc_link_id}",
+          "connectionType": "VPC_LINK",
+          "type": "http_proxy",
+          "httpMethod": "POST",
+          "uri": "http://${nlb_uri}:8082/v1/case/event",
+          "requestParameters": null,
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "passthroughBehavior": "when_no_match"
+        }
+      },
+      "options": {
+        "responses": {},
+        "x-amazon-apigateway-integration": {
+          "connectionId": "${vpc_link_id}",
+          "connectionType": "VPC_LINK",
+          "type": "http_proxy",
+          "httpMethod": "OPTIONS",
+          "uri": "http://${nlb_uri}:8082/v1/case/event",
+          "requestParameters": null,
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "passthroughBehavior": "when_no_match"
+        }
+      }
+    }
+  },
+  "x-amazon-apigateway-gateway-responses": {
+    "DEFAULT_4XX": {
+      "responseParameters": {
+        "gatewayresponse.header.Access-Control-Allow-Methods": "'GET,POST,DELETE,PATCH,OPTIONS'",
+        "gatewayresponse.header.Access-Control-Allow-Origin": "'*'",
+        "gatewayresponse.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+      },
+      "responseTemplates": {
+        "application/json": "{\"message\":$context.error.messageString}"
+      }
+    },
+    "DEFAULT_5XX": {
+      "responseParameters": {
+        "gatewayresponse.header.Access-Control-Allow-Methods": "'GET,POST,DELETE,PATCH,OPTIONS'",
+        "gatewayresponse.header.Access-Control-Allow-Origin": "'*'",
+        "gatewayresponse.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+      },
+      "responseTemplates": {
+        "application/json": "{\"message\":$context.error.messageString}"
+      }
+    }
+  }
+}

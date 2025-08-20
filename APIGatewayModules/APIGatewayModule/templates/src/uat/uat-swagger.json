@@ -1,0 +1,806 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "${env}",
+    "version" : "v0",
+    "title" : "${api_title}"
+  },
+  "host" : "salesworkflow.prod.2ndchancefunder.com",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/actuator/health" : {
+      "get" : {
+        "operationId" : "undefined",
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "GET",
+          "uri" : "http://${nlb_uri}:8085/actuator/health",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      },
+      "options" : {
+        "responses" : { },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "OPTIONS",
+          "uri" : "http://${nlb_uri}:8085/actuator/health",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      }
+    },
+    "/actuator/info" : {
+      "get" : {
+        "operationId" : "undefined",
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "GET",
+          "uri" : "http://${nlb_uri}:8085/actuator/info",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      },
+      "options" : {
+        "responses" : { },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "OPTIONS",
+          "uri" : "http://${nlb_uri}:8085/actuator/info",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      }
+    },
+    "/actuator/loggers" : {
+      "get" : {
+        "operationId" : "undefined",
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "GET",
+          "uri" : "http://${nlb_uri}:8085/actuator/loggers",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      },
+      "options" : {
+        "responses" : { },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "OPTIONS",
+          "uri" : "http://${nlb_uri}:8085/actuator/loggers",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      }
+    },
+    "/actuator/metrics" : {
+      "get" : {
+        "operationId" : "undefined",
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "GET",
+          "uri" : "http://${nlb_uri}:8085/actuator/metrics",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      },
+      "options" : {
+        "responses" : { },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "OPTIONS",
+          "uri" : "http://${nlb_uri}:8085/actuator/metrics",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      }
+    },
+    "/actuator/prometheus" : {
+      "get" : {
+        "operationId" : "undefined",
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "GET",
+          "uri" : "http://${nlb_uri}:8085/actuator/prometheus",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      },
+      "options" : {
+        "responses" : { },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "OPTIONS",
+          "uri" : "http://${nlb_uri}:8085/actuator/prometheus",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      }
+    },
+    "/actuator/threaddump" : {
+      "get" : {
+        "operationId" : "undefined",
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "GET",
+          "uri" : "http://${nlb_uri}:8085/actuator/threaddump",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      },
+      "options" : {
+        "responses" : { },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "OPTIONS",
+          "uri" : "http://${nlb_uri}:8085/actuator/threaddump",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      }
+    },
+    "/api/v1/callback/attachment/upload-complete" : {
+      "post" : {
+        "operationId" : "handleUploadCallback",
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "POST",
+          "uri" : "http://${nlb_uri}:8085/api/v1/callback/attachment/upload-complete",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      },
+      "options" : {
+        "responses" : { },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "OPTIONS",
+          "uri" : "http://${nlb_uri}:8085/api/v1/callback/attachment/upload-complete",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      }
+    },
+    "/api/v1/lead/attachment" : {
+      "get" : {
+        "operationId" : "handleUploadCallback",
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "GET",
+          "uri" : "http://${nlb_uri}:8085/api/v1/lead/attachment",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      },
+      "post" : {
+        "operationId" : "handleUploadCallback",
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "POST",
+          "uri" : "http://${nlb_uri}:8085/api/v1/lead/attachment",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      },
+      "options" : {
+        "responses" : { },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "OPTIONS",
+          "uri" : "http://${nlb_uri}:8085/api/v1/lead/attachment",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      }
+    },
+    "/api/v1/s3/generate-presigned-url" : {
+      "get" : {
+        "operationId" : "generatePresignedUrl",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "GET",
+          "uri" : "http://${nlb_uri}:8085/api/v1/s3/generate-presigned-url",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      },
+      "options" : {
+        "responses" : { },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "OPTIONS",
+          "uri" : "http://${nlb_uri}:8085/api/v1/s3/generate-presigned-url",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      }
+    },
+    "/swagger-ui" : {
+      "get" : {
+        "operationId" : "undefined",
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "GET",
+          "uri" : "http://${nlb_uri}:8085/swagger-ui/",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      },
+      "options" : {
+        "responses" : { },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "OPTIONS",
+          "uri" : "http://${nlb_uri}:8085/swagger-ui/",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      }
+    },
+    "/v1/case/event" : {
+      "post" : {
+        "operationId" : "createNewLead_1",
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "POST",
+          "uri" : "http://${nlb_uri}:8085/v1/case/event",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      },
+      "options" : {
+        "responses" : { },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "OPTIONS",
+          "uri" : "http://${nlb_uri}:8085/v1/case/event",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      }
+    },
+    "/v1/lead" : {
+      "get" : {
+        "operationId" : "createNewLead",
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "GET",
+          "uri" : "http://${nlb_uri}:8085/v1/lead",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      },
+      "post" : {
+        "operationId" : "createNewLead",
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "POST",
+          "uri" : "http://${nlb_uri}:8085/v1/lead",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      },
+      "options" : {
+        "responses" : { },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "OPTIONS",
+          "uri" : "http://${nlb_uri}:8085/v1/lead",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      }
+    },
+    "/v1/lead/status/{email}" : {
+      "get" : {
+        "operationId" : "getLeadStatus",
+        "parameters" : [ {
+          "name" : "email",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "GET",
+          "uri" : "http://${nlb_uri}:8085/v1/lead/status/{email}",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "requestParameters" : {
+            "integration.request.path.email" : "method.request.path.email"
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      },
+      "options" : {
+        "parameters" : [ {
+          "name" : "email",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : { },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "OPTIONS",
+          "uri" : "http://${nlb_uri}:8085/v1/lead/status/{email}",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "requestParameters" : {
+            "integration.request.path.email" : "method.request.path.email"
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      }
+    },
+    "/v1/lead/{id}" : {
+      "put" : {
+        "operationId" : "patchLead",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "PUT",
+          "uri" : "http://${nlb_uri}:8085/v1/lead/{id}",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "requestParameters" : {
+            "integration.request.path.id" : "method.request.path.id"
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      },
+      "options" : {
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : { },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "OPTIONS",
+          "uri" : "http://${nlb_uri}:8085/v1/lead/{id}",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "requestParameters" : {
+            "integration.request.path.id" : "method.request.path.id"
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      }
+    },
+    "/v1/lead/{id}/attachment" : {
+      "post" : {
+        "operationId" : "uploadAttachment",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "POST",
+          "uri" : "http://${nlb_uri}:8085/v1/lead/{id}/attachment",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "requestParameters" : {
+            "integration.request.path.id" : "method.request.path.id"
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      },
+      "options" : {
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : { },
+        "x-amazon-apigateway-integration" : {
+          "connectionId" : "${vpc_link_id}",
+          "httpMethod" : "OPTIONS",
+          "uri" : "http://${nlb_uri}:8085/v1/lead/{id}/attachment",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200"
+            }
+          },
+          "requestParameters" : {
+            "integration.request.path.id" : "method.request.path.id"
+          },
+          "connectionType" : "VPC_LINK",
+          "passthroughBehavior" : "when_no_match",
+          "type" : "http_proxy"
+        }
+      }
+    }
+  },
+  "x-amazon-apigateway-gateway-responses" : {
+    "DEFAULT_5XX" : {
+      "responseParameters" : {
+        "gatewayresponse.header.Access-Control-Allow-Methods" : "'GET,POST,DELETE,PATCH,OPTIONS'",
+        "gatewayresponse.header.Access-Control-Allow-Headers" : "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+        "gatewayresponse.header.Access-Control-Allow-Origin" : "'*'"
+      },
+      "responseTemplates" : {
+        "application/json" : "{\"message\":$context.error.messageString}"
+      }
+    },
+    "DEFAULT_4XX" : {
+      "responseParameters" : {
+        "gatewayresponse.header.Access-Control-Allow-Methods" : "'GET,POST,DELETE,PATCH,OPTIONS'",
+        "gatewayresponse.header.Access-Control-Allow-Headers" : "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+        "gatewayresponse.header.Access-Control-Allow-Origin" : "'*'"
+      },
+      "responseTemplates" : {
+        "application/json" : "{\"message\":$context.error.messageString}"
+      }
+    }
+  }
+}
